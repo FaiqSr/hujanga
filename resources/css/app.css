@@ -73,4 +73,34 @@
 
         filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0288C7", endColorstr="#029DC5", GradientType=1 );
     }
+    .img-hor-vert {
+        -webkit-transform: scale(-1, -1);
+        -moz-transform: scale(-1, -1);
+        -o-transform: scale(-1, -1);
+        transform: scale(-1, 1);
+    }
+
+    .fitur-background {
+        background: hsla(216, 31%, 17%, 1);
+
+        background: linear-gradient(
+            0deg,
+            hsla(216, 31%, 17%, 1) 51%,
+            hsla(220, 43%, 11%, 1) 100%
+        );
+
+        background: -moz-linear-gradient(
+            0deg,
+            hsla(216, 31%, 17%, 1) 51%,
+            hsla(220, 43%, 11%, 1) 100%
+        );
+
+        background: -webkit-linear-gradient(
+            0deg,
+            hsla(216, 31%, 17%, 1) 51%,
+            hsla(220, 43%, 11%, 1) 100%
+        );
+
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1E2939", endColorstr="#101828", GradientType=1 );
+    }
 }

@@ -3,7 +3,8 @@
 @section('title', 'Login Pages')
 
 @section('content')
-    <main class="bg-gradient-to-br from-gray-100 via-blue-50 to-purple-100 flex items-center justify-center min-h-screen">
+    <main
+        class="bg-gradient-to-br from-gray-100 via-blue-50 to-purple-100 flex items-center justify-center min-h-screen px-5">
 
         <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm">
             <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">Login</h2>
@@ -48,6 +49,9 @@
 
     </main>
 
+@endsection
+
+@push('scripts')
     <script type="module">
         const facebookButton = document.getElementById('facebook-button');
         const googleButton = document.getElementById('google-button');
@@ -115,4 +119,4 @@
                 });
         })
     </script>
-@endsection
+@endpush
