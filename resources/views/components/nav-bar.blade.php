@@ -15,7 +15,7 @@
                 <li><a href="{{ route('contact') }}"
                         class=" {{ Route::currentRouteName() === 'contact' ? 'text-blue-500 font-semibold' : '' }} hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out">Contact
                         us</a></li>
-                <li><a href="/"
+                <li><a href="/dashboard"
                         class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out">Map</a></li>
             </ul>
         </nav>
@@ -27,12 +27,39 @@
                     class="cursor-pointer text-xl border border-third rounded-lg p-2 px-4 text-secondary dark:text-primary dark:border-primary"><i
                         class="fa-solid fa-bars"></i></button>
             </section>
-            <section class="gap-5 hidden sm:flex">
-                <button
-                    class="cursor-pointer text-xl border border-third rounded-lg p-2 px-3 text-secondary dark:text-primary dark:border-primary">
-                    <i class="fa-solid fa-user"></i>
-                </button>
+            <section class="gap-5 hidden sm:flex relative">
+                @if (!userAuth())
+                    <button id="profile-button"
+                        class="cursor-pointer text-xl border border-third rounded-lg p-2 px-3 text-secondary dark:text-primary dark:border-primary">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                @else
+                    <button id="profile-button"
+                        class="cursor-pointer text-xl border border-third rounded-lg p-1 px-2 text-secondary dark:text-primary dark:border-primary">
+                        <img src="{{ getUser()->photoUrl }}" alt="" width="30px"
+                            class="object-cover rounded-sm">
+                    </button>
+                @endif
+
+                <section id="profile-dropdown" hidden
+                    class="absolute right-0 mt-16 bg-white dark:bg-slate-800 shadow-lg rounded-lg w-40 py-2 text-center z-50 h-fit">
+                    <section class="flex flex-col gap-2 py-2">
+                        @if (!userAuth())
+                            <a href="/login"
+                                class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Login</a>
+                            <a href="/signup"
+                                class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Sign
+                                Up</a>
+                        @else
+                            <a href="/dashboard"
+                                class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</a>
+                            <a href="/logout"
+                                class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+                        @endif
+                    </section>
+                </section>
             </section>
+
         </section>
     </section>
     <aside class="flex justify-center sm:hidden py-10 " id="sideBar" hidden>
@@ -51,10 +78,17 @@
                         class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Map</a>
                 </li>
                 <section class="flex gap-10">
-                    <a href="/login"
-                        class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Login</a>
-                    <a href="/signup"
-                        class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">SignUp</a>
+                    @if (!userAuth())
+                        <a href="/login"
+                            class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Login</a>
+                        <a href="/signup"
+                            class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">SignUp</a>
+                    @else
+                        <a href="/dashboard"
+                            class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Dashboard</a>
+                        <a href="/logout"
+                            class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Logout</a>
+                    @endif
                 </section>
             </ul>
         </nav>
@@ -105,6 +139,25 @@
                 sideBar.removeAttribute('hidden');
             } else {
                 sideBar.setAttribute('hidden', true);
+            }
+        });
+    </script>
+    <script>
+        const profileButton = document.getElementById('profile-button');
+        const profileDropdown = document.getElementById('profile-dropdown');
+
+        profileButton.addEventListener('click', () => {
+            if (profileDropdown.hasAttribute('hidden')) {
+                profileDropdown.removeAttribute('hidden');
+            } else {
+                profileDropdown.setAttribute('hidden', true);
+            }
+        });
+
+        // Optional: klik di luar dropdown akan menutup dropdown
+        window.addEventListener('click', function(e) {
+            if (!profileButton.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.setAttribute('hidden', true);
             }
         });
     </script>

@@ -19,7 +19,7 @@
             </section>
 
             <section
-                class="flex min-h-svh w-full justify-center items-center flex-col lg:flex-row container mx-auto py-10 sm:py-36 lg:py-0 px-5 gap-0 lg:gap-10">
+                class="flex w-full justify-center items-center flex-col lg:flex-row container mx-auto py-10 sm:py-36 lg:pb-0 lg:pt-44 px-5 gap-0 lg:gap-10">
                 {{-- Left Content --}}
                 <section
                     class="w-full lg:w-1/2 flex justify-center flex-col gap-10 py-20 lg:py-0 animate__animated animate__fadeInDown">
@@ -38,19 +38,19 @@
                         </section>
 
                         <section>
-                            <h1 class="font-bold text-3xl sm:text-5xl lg:text-6xl">BIAR GA KEHUJANAN</h1>
+                            <h1 class="font-bold text-3xl sm:text-5xl lg:text-6xl">Takut Kehujanan?</h1>
                             <h1 class="font-bold text-3xl sm:text-5xl lg:text-6xl">
-                                BUKA <span class="text-primary">HUJANGA?</span>
+                                Cek <span class="text-primary">HUJANGA?</span>
                             </h1>
-                            <p class="text-slate-500 mt-2 sm:text-xl">
-                                Sebuah platform digital yang menyediakan informasi lengkap dan terkini tentang kondisi cuaca
-                                di lokasi sekitarmu, membantu kamu tetap siap menghadapi perubahan cuaca kapan saja.
+                            <p class="text-slate-500 mt-2 sm:text-xl">Platform digital yang menyediakan informasi cuaca
+                                lengkap dan real-time di sekitar lokasimu. Dengan HujanGa, kamu bisa selalu siap menghadapi
+                                perubahan cuaca kapan pun.
                             </p>
                         </section>
                     </section>
 
                     <section class="flex gap-5">
-                        <a href="/map"
+                        <a href="/dashboard"
                             class="px-5 py-2 border border-primary bg-secondary rounded-lg hover:bg-third text-white primary-gradient font-semibold">Map</a>
                         <a href="{{ route('about') }}"
                             class="px-5 py-2 border border-primary rounded-lg primary-border-button text-black dark:text-white hover:text-white transition-all duration-500 font-semibold hover:dark:bg-secondary">Learn
@@ -60,17 +60,17 @@
                     <section class="flex gap-10">
                         <section class="text-center">
                             <h3 class="text-primary text-2xl font-bold">1.0</h3>
-                            <p>Version</p>
+                            <p>Versi</p>
                         </section>
                         <section class="border-l border-slate-200"></section>
                         <section class="text-center">
                             <h3 class="text-primary text-2xl font-bold">121</h3>
-                            <p>Installed</p>
+                            <p>Terpasang</p>
                         </section>
                         <section class="border-l border-slate-200"></section>
                         <section class="text-center">
                             <h3 class="text-primary text-2xl font-bold">12</h3>
-                            <p>Location</p>
+                            <p>Meliputi</p>
                         </section>
                     </section>
                 </section>
@@ -87,7 +87,7 @@
         {{-- End Main Section --}}
 
         {{-- About --}}
-        <section class="container mx-auto py-10 dark:bg-slate relative ">
+        <section class="container mx-auto py-10  dark:bg-slate relative ">
             <section
                 class="absolute bottom-0 left-0 top-0 max-w-[400px] max-h-[400px] w-full h-full rounded-full bg-gradient-to-r from-primary/20 to-blue-400/20 blur-3xl -z-10">
             </section>
@@ -98,12 +98,11 @@
                         class="rounded-2xl w-fit px-5 py-2 text-secondary dark:text-fifth bg-sky-100 font-semibold dark:bg-sky-900">
                         Sejarah</h1>
                     <h2 class="font-semibold text-4xl my-2">Bagaimana Kami Tercipta</h2>
-                    <p class="text-slate-500 mt-2 sm:text-xl text-justify lg:text-center">Berawal dari keluh kesah kami para
-                        pengguna
-                        sepeda motor yang
-                        tinggal di bogor. Kondisi cuaca yang bisa beda tiap RT membuat kami mencari adakah aplikasi yang
-                        mampu untuk menampilkan cuaca secara realtime. DIcari-cari ternyata belum ada. jadilah kami membuat
-                        HujanGa untuk menyelesaikan masalah kami ini.</p>
+                    <p class="text-slate-500 mt-2 sm:text-xl text-justify lg:text-center">Berawal dari pengalaman kami
+                        sebagai pengguna sepeda motor di Bogor yang sering menghadapi cuaca tak menentu. Kondisi cuaca yang
+                        bisa berbeda di setiap wilayah membuat kami mencari aplikasi yang bisa menampilkan prediksi cuaca
+                        secara real-time. Karena belum menemukan solusi yang tepat, akhirnya kami menciptakan HujanGa untuk
+                        menjawab kebutuhan ini.</p>
                 </section>
             </section>
 
@@ -142,104 +141,202 @@
                         class="rounded-2xl w-fit px-5 py-2 text-secondary dark:text-fifth bg-sky-100 font-semibold dark:bg-sky-900">
                         Fitur Unggulan</h1>
                     <h2 class="font-semibold text-4xl my-2">Cara terbaik untuk merencanakan perjalanan anda</h2>
-                    <p class="text-slate-500 mt-2 sm:text-xl"><span class="text-primary">HujanGa</span> hadir untuk membatu
-                        kita semua dalam
-                        mempersiapkan perjalanan jarak jauh maupun dekat</p>
+                    <p class="text-slate-500 mt-2 sm:text-xl"><span class="text-primary">HujanGa</span> hadir untuk membantu
+                        mempersiapkan segala aktivitas luar ruangan, baik untuk perjalanan jarak jauh maupun dekat</p>
                 </section>
                 <section class="flex flex-col lg:flex-row items-center justify-center mt-10 gap-10 x">
-                    <section class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950">
+                    <section
+                        class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950 shadow-lg">
                         <i
                             class="fa-solid fa-user border rounded-full dark:border-gray-700 px-2 py-2 mb-5 text-2xl  text-primary dark:text-secondary"></i>
 
                         <h5 class="text-xl font-semibold">User Friendly</h5>
-                        <p class="text-slate-500 mt-2 ">Tampilan yang mudah digunakan</p>
+                        <p class="text-slate-500 mt-2 ">Antarmuka sederhana yang mudah dipahami semua usia</p>
                     </section>
-                    <section class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950">
+                    <section
+                        class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950 shadow-lg">
                         <i
                             class="fa-solid fa-map border rounded-full dark:border-gray-700 px-2 py-2 mb-5 text-2xl  text-primary dark:text-secondary"></i>
 
                         <h5 class="text-xl font-semibold">Map</h5>
-                        <p class="text-slate-500 mt-2 ">Menggunakan map sehingga mempermudah user</p>
+                        <p class="text-slate-500 mt-2 ">Peta interaktif untuk memantau kondisi cuaca di berbagai lokasi</p>
                     </section>
-                    <section class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950">
+                    <section
+                        class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950 shadow-lg">
                         <i
                             class="fa-regular fa-folder-open border rounded-full dark:border-gray-700 px-2 py-2 mb-5 text-2xl text-primary dark:text-secondary"></i>
 
                         <h5 class="text-xl font-semibold">Open Source</h5>
-                        <p class="text-slate-500 mt-2 ">Kode sumber dapat diakses dan dikembangkan oleh siapa saja</p>
+                        <p class="text-slate-500 mt-2 ">Kode sumber terbuka yang bisa dikembangkan bersama komunitas</p>
                     </section>
                 </section>
             </section>
         </section>
         {{-- End Fitur --}}
 
-        <section class="dark:bg-gradient-to-b dark:from-gray-800 dark:from-25% dark:to-none  dark:to-75% ">
+        {{-- Contribute Section --}}
+        <section class="py-20 dark:bg-gradient-to-b dark:from-gray-800 dark:from-25% dark:to-none  dark:to-75%  relative">
+            <section
+                class="absolute left-0 bottom-1/2 w-80 h-80 rounded-full bg-gradient-to-r from-primary/20 to-blue-400/20 blur-3xl -z-10">
+            </section>
 
-
-            <section class="px-5 pb-20 z-20">
-
-                <section class="text-center flex flex-col items-center">
+            <section class="container mx-auto px-5">
+                <section class="text-center mb-16">
                     <h1
-                        class="rounded-2xl w-fit px-5 py-2 text-secondary dark:text-fifth bg-sky-100 font-semibold dark:bg-sky-900">
-                        Contribute</h1>
-                    <h2 class="font-semibold text-4xl my-2">Kontribusi untuk kebaikan bersama</h2>
-                    <p class="text-slate-500 mt-2 sm:text-xl">Kontribusi dalam aplikasi ini, akan sangat membantu kita semua
+                        class="rounded-2xl w-fit px-5 py-2 text-secondary dark:text-fifth bg-sky-100 font-semibold dark:bg-sky-900 mx-auto">
+                        Berkontribusi</h1>
+                    <h2 class="font-semibold text-4xl my-4">Bantu Kami Mengembangkan HujanGa</h2>
+                    <p class="text-slate-500 max-w-3xl mx-auto">
+                        HujanGa adalah proyek open source yang dikembangkan untuk masyarakat.
+                        Kami menyambut semua jenis kontribusi untuk membuat platform ini semakin baik.
                     </p>
                 </section>
-                <section class="flex flex-col lg:flex-row items-center justify-center mt-10 gap-10 ">
-                    <section class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950">
-                        <i
-                            class="fa-solid fa-user border rounded-full dark:border-gray-700 px-2 py-2 mb-5 text-2xl  text-primary dark:text-secondary"></i>
 
-                        <h5 class="text-xl font-semibold">User Friendly</h5>
-                        <p class="text-slate-500 mt-2 ">Tampilan yang mudah digunakan</p>
+                <section class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {{-- Report Issue Card --}}
+                    <section
+                        class="border rounded-xl p-6 dark:border-gray-700 dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fa-solid fa-bug text-2xl text-primary dark:text-secondary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-center">Laporkan Masalah</h3>
+                        <p class="text-slate-500 text-center mb-4">
+                            Temukan bug atau masalah? Beri tahu kami agar bisa segera diperbaiki.
+                        </p>
+                        <a href="https://github.com/hujanga/issues" target="_blank"
+                            class="px-4 py-2 text-sm border border-primary rounded-lg primary-border-button inline-block hover:bg-primary hover:text-white transition-colors">
+                            Laporkan Bug
+                        </a>
                     </section>
-                    <section class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950">
-                        <i
-                            class="fa-solid fa-map border rounded-full dark:border-gray-700 px-2 py-2 mb-5 text-2xl  text-primary dark:text-secondary"></i>
 
-                        <h5 class="text-xl font-semibold">Map</h5>
-                        <p class="text-slate-500 mt-2 ">Menggunakan map sehingga mempermudah user</p>
+                    {{-- Feature Request Card --}}
+                    <section
+                        class="border rounded-xl p-6 dark:border-gray-700 dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fa-solid fa-lightbulb text-2xl text-primary dark:text-secondary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-center">Usulkan Fitur</h3>
+                        <p class="text-slate-500 text-center mb-4">
+                            Punya ide untuk fitur baru? Kami ingin mendengar saran Anda.
+                        </p>
+                        <a href="https://github.com/hujanga/ideas" target="_blank"
+                            class="px-4 py-2 text-sm border border-primary rounded-lg primary-border-button inline-block hover:bg-primary hover:text-white transition-colors">
+                            Beri Masukan
+                        </a>
                     </section>
-                    <section class="w-full lg:w-96 min-h-56 border rounded-xl p-5 dark:border-gray-700 dark:bg-gray-950">
-                        <i
-                            class="fa-regular fa-folder-open border rounded-full dark:border-gray-700 px-2 py-2 mb-5 text-2xl text-primary dark:text-secondary"></i>
 
-                        <h5 class="text-xl font-semibold">Open Source</h5>
-                        <p class="text-slate-500 mt-2 ">Kode sumber dapat diakses dan dikembangkan oleh siapa saja</p>
+                    {{-- Develop Card --}}
+                    <section
+                        class="border rounded-xl p-6 dark:border-gray-700 dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fa-solid fa-code text-2xl text-primary dark:text-secondary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-center">Kembangkan</h3>
+                        <p class="text-slate-500 text-center mb-4">
+                            Developer? Mari berkontribusi langsung ke kode sumber HujanGa.
+                        </p>
+                        <a href="https://github.com/hujanga/hujanga" target="_blank"
+                            class="px-4 py-2 text-sm border border-primary rounded-lg primary-border-button inline-block hover:bg-primary hover:text-white transition-colors">
+                            Lihat GitHub
+                        </a>
                     </section>
+                </section>
+
+                {{-- Additional Contribution Options --}}
+                <section class="mt-16 border-t border-gray-200 dark:border-gray-700 pt-12">
+                    <h3 class="text-2xl font-semibold text-center mb-8">Cara Lain untuk Berkontribusi</h3>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                        {{-- Donate --}}
+                        <div class="flex items-start gap-4 p-4 border dark:border-gray-700 rounded-lg">
+                            <div
+                                class="w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-hand-holding-heart text-primary dark:text-secondary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Donasi</h4>
+                                <p class="text-slate-500 text-sm">Dukung pengembangan HujanGa dengan donasi</p>
+                            </div>
+                        </div>
+
+                        {{-- Translate --}}
+                        <div class="flex items-start gap-4 p-4 border dark:border-gray-700 rounded-lg">
+                            <div
+                                class="w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-language text-primary dark:text-secondary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Terjemahan</h4>
+                                <p class="text-slate-500 text-sm">Bantu terjemahkan ke bahasa lain</p>
+                            </div>
+                        </div>
+
+                        {{-- Documentation --}}
+                        <div class="flex items-start gap-4 p-4 border dark:border-gray-700 rounded-lg">
+                            <div
+                                class="w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-book text-primary dark:text-secondary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Dokumentasi</h4>
+                                <p class="text-slate-500 text-sm">Tingkatkan dokumentasi kami</p>
+                            </div>
+                        </div>
+
+                        {{-- Share --}}
+                        <div class="flex items-start gap-4 p-4 border dark:border-gray-700 rounded-lg">
+                            <div
+                                class="w-10 h-10 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-share-nodes text-primary dark:text-secondary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Sebarkan</h4>
+                                <p class="text-slate-500 text-sm">Beri tahu orang lain tentang HujanGa</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </section>
         </section>
-
         {{-- Contact --}}
-
-        <section>
+        {{-- 
+        <section class="relative">
+            <section
+                class="absolute left-0 bottom-1/2 w-80 h-80 rounded-full bg-gradient-to-r from-primary/20 to-blue-400/20 blur-3xl -z-10">
+            </section>
             <section class="container mx-auto pb-20 pt-10 px-5">
 
                 <section class="text-center flex flex-col items-center pb-10">
                     <h1
                         class="rounded-2xl w-fit px-5 py-2 text-secondary dark:text-fifth bg-sky-100 font-semibold dark:bg-sky-900">
                         Contact Us</h1>
-                    <h2 class="font-semibold text-4xl my-2">Hubungi kami untuk komunikasi dengan baik</h2>
+                    <h2 class="font-semibold text-4xl my-2">Hubungi kami untuk informasi lebih lanjut</h2>
                 </section>
                 <section
-                    class=" flex flex-col lg:flex-row w-full border-2 border-primary dark:border-y-gray-700 rounded-xl min-h-96 h-[400px]">
+                    class=" flex flex-col lg:flex-row w-full border dark:border-primary border-slate-800 dark:border-y-gray-700 rounded-xl  min-h-[400px]">
                     <section class="flex flex-col w-full lg:w-1/2 p-5 gap-5">
                         <section class="w-full">
                             <h1 class="font-semibold text-2xl mb-5">Email</h1>
-                            <input type="text" class="w-full bg-slate-50 dark:bg-gray-800 border-gray-600 rounded-lg">
+                            <input type="text" class="w-full bg-slate-200 dark:bg-gray-800 border-gray-600 rounded-lg">
                         </section>
                         <section class="w-full">
                             <h1 class="font-semibold text-2xl mb-5">Pesan</h1>
                             <textarea name="" id="" cols="30" rows="7"
-                                class="w-full bg-slate-50 dark:bg-gray-800 border-gray-600 rounded-lg"></textarea>
+                                class="w-full bg-slate-200 dark:bg-gray-800 border-gray-600 rounded-lg"></textarea>
+                        </section>
+                        <section class="flex justify-center">
+                            <button class="px-5 py-2 bg-primary text-white rounded-lg cursor-pointer">
+                                Kirim
+                            </button>
                         </section>
                     </section>
-                    <section class="w-full lg:w-1/2 bg-sixth dark:bg-gray-800 "></section>
+                    <section class="w-full lg:w-1/2 bg-slate-200 dark:bg-gray-800 "></section>
                 </section>
             </section>
-        </section>
+        </section> --}}
 
         {{-- End Contact --}}
 

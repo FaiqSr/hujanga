@@ -19,4 +19,19 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+
+    public function aboutReynaldi()
+    {
+        return view('about.abang');
+    }
+
+    public function aboutNiefa()
+    {
+        return view('about.niefa');
+    }
+
+    public function aboutFaiq()
+    {
+        return view('about.faiq');
+    }
 }
