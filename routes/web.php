@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SignController;
-use App\Http\Controllers\UserController;
 use App\Http\Middleware\FirebaseAuth;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\RefreshFirebaseToken;
@@ -19,12 +19,15 @@ Route::middleware([RefreshFirebaseToken::class])->group(function () {
 
 
 Route::middleware([GuestMiddleware::class])->group(function () {
-    Route::get('/login', [SignController::class, 'login'])->name('login');
-    Route::get('/signin/{accessToken}/{refreshToken}', [SignController::class, 'signIn'])->name('signIn');
-    Route::post('signUp', [SignController::class, 'signUp'])->name('signUp');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'signUp'])->name('signup');
+    Route::get('/signin/auth/google/{accessToken}/{refreshToken}', [AuthController::class, 'signInWithGoogle'])->name('signInWithGoogle');
+    Route::get('/signin/auth/email/{accessToken}/{refreshToken}', [AuthController::class, 'loginWithEmailAndPassword'])->name('loginWithEmailAndPassword');
 });
 
 Route::middleware([FirebaseAuth::class])->group(function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('/logout', [SignController::class, 'logout'])->name('logout');
+    Route::get('/dashboard/map', [DashboardController::class, 'dashboard'])->name('map');
+    Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->name('setting');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

@@ -1,34 +1,46 @@
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-import { Vector as VectorSource } from 'ol/source';
-import { Vector as VectorLayer } from 'ol/layer';
-import { Icon, Style } from 'ol/style';
-import { fromLonLat } from 'ol/proj';
+import Feature from "ol/Feature";
+import Point from "ol/geom/Point";
+import { Vector as VectorSource } from "ol/source";
+import { Vector as VectorLayer } from "ol/layer";
+import { Icon, Style } from "ol/style";
+import { fromLonLat } from "ol/proj";
 
-export default function showPointsOnMap(points) {
-  const features = points.map((point) => {
-    const feature = new Feature({
-      geometry: new Point(fromLonLat([point.lng, point.lat])),
-      name: point.name,
-    });
+let previousLayer = null;
 
-    feature.setStyle(new Style({
-      image: new Icon({
-        src: 'https://openlayers.org/en/v6.5.0/examples/data/icon.png', // contoh icon
-        scale: 0.05,
-      }),
-    }));
+export default function showPointsOnMap(points, map) {
+    if (previousLayer) {
+        map.removeLayer(previousLayer);
+    }
 
-    return feature;
-  });
+    // console.log(points);
 
-  const vectorSource = new VectorSource({
-    features: features,
-  });
+    const features = points
+        // .filter((p) => p.settings && p.settings.lat && p.settings.lon)
+        .map((p) => {
+            // console.log(p.settings);
+            const feature = new Feature({
+                geometry: new Point(
+                    // fromLonLat([+p.settings.lon, +p.settings.lat])
+                    fromLonLat([p.settings.Lon, p.settings.Lat])
+                ),
+                name: p.uid || "Tanpa Nama",
+            });
 
-  const vectorLayer = new VectorLayer({
-    source: vectorSource,
-  });
+            feature.setStyle(
+                new Style({
+                    image: new Icon({
+                        src: "https://openlayers.org/en/v6.5.0/examples/data/icon.png",
+                        scale: 1,
+                    }),
+                })
+            );
 
-  map.addLayer(vectorLayer); // asumsi `map` sudah kamu buat sebelumnya
+            return feature;
+        });
+
+    const vectorSource = new VectorSource({ features });
+    const vectorLayer = new VectorLayer({ source: vectorSource });
+
+    map.addLayer(vectorLayer);
+    previousLayer = vectorLayer;
 }

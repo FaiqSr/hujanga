@@ -1,24 +1,28 @@
 import { getDatabase, ref, onValue } from "firebase/database";
-import showPointsOnMap from "./mark";
+import { app } from "./firebaseSdk"; // pastikan sudah setup firebase
+import showPointsOnMap from "./mark"; // fungsi yang render marker ke map
 
-const db = getDatabase();
-const pointsRef = ref(db, 'points'); // contoh path
+const db = getDatabase(app);
 
-function connectToFirebase(){
-    onValue(pointsRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        // Ubah object ke array
-        const pointArray = Object.keys(data).map((key) => ({
-          id: key,
-          ...data[key],
+export default function connectToFirebase(map) {
+    const sensorRef = ref(db, "sensor");
+    onValue(sensorRef, (snapshot) => {
+        const data = snapshot.val();
+
+        if (!data) {
+            console.log("Tidak ada data dari Firebase.");
+            return;
+        }
+
+        // Ubah object ke array dan tambahkan uid
+        const points = Object.entries(data).map(([uid, value]) => ({
+            uid,
+            ...value,
         }));
-    
-        // Panggil fungsi untuk tampilkan di olMap
-        showPointsOnMap(pointArray);
-      }
+
+        // console.log(points.);
+
+        // Tampilkan ke peta
+        showPointsOnMap(points, map);
     });
 }
-
-
-export default connectToFirebase();

@@ -50,7 +50,7 @@
                     </section>
 
                     <section class="flex gap-5">
-                        <a href="/dashboard"
+                        <a href="/dashboard/map"
                             class="px-5 py-2 border border-primary bg-secondary rounded-lg hover:bg-third text-white primary-gradient font-semibold">Map</a>
                         <a href="{{ route('about') }}"
                             class="px-5 py-2 border border-primary rounded-lg primary-border-button text-black dark:text-white hover:text-white transition-all duration-500 font-semibold hover:dark:bg-secondary">Learn

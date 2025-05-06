@@ -7,7 +7,7 @@ use Kreait\Firebase\Factory;
 
 class FirebaseService
 {
-    protected $auth;
+    public $auth;
 
     public function __construct()
     {
@@ -23,7 +23,7 @@ class FirebaseService
         }
     }
 
-    public function RefreshFirebaseAccessToken($refreshToken)
+    public function refreshFirebaseAccessToken($refreshToken)
     {
         $apiKey = env('FIREBASE_API_KEY');
 
@@ -41,5 +41,10 @@ class FirebaseService
         } else {
             throw new \Exception('Failed to refresh token: ' . $response->body());
         }
+    }
+
+    public function createAccountWithEmailAndPassword($email, $password)
+    {
+        return $this->auth->createUserWithEmailAndPassword($email, $password);
     }
 }

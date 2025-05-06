@@ -15,7 +15,7 @@
                 <li><a href="{{ route('contact') }}"
                         class=" {{ Route::currentRouteName() === 'contact' ? 'text-blue-500 font-semibold' : '' }} hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out">Contact
                         us</a></li>
-                <li><a href="/dashboard"
+                <li><a href="/dashboard/map"
                         class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out">Map</a></li>
             </ul>
         </nav>
@@ -34,11 +34,18 @@
                         <i class="fa-solid fa-user"></i>
                     </button>
                 @else
-                    <button id="profile-button"
-                        class="cursor-pointer text-xl border border-third rounded-lg p-1 px-2 text-secondary dark:text-primary dark:border-primary">
-                        <img src="{{ getUser()->photoUrl }}" alt="" width="30px"
-                            class="object-cover rounded-sm">
-                    </button>
+                    @if (getUser()['photoUrl'] == '')
+                        <button id="profile-button"
+                            class="cursor-pointer text-xl border border-third rounded-lg p-2 px-3 text-secondary dark:text-primary dark:border-primary">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                    @else
+                        <button id="profile-button"
+                            class="cursor-pointer text-xl border border-third rounded-lg p-1 px-2 text-secondary dark:text-primary dark:border-primary">
+                            <img src="{{ getUser()['photoUrl'] }}" alt="" width="30px"
+                                class="object-cover rounded-sm">
+                        </button>
+                    @endif
                 @endif
 
                 <section id="profile-dropdown" hidden
@@ -47,11 +54,11 @@
                         @if (!userAuth())
                             <a href="/login"
                                 class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Login</a>
-                            <a href="/signup"
+                            <a href="/register"
                                 class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Sign
                                 Up</a>
                         @else
-                            <a href="/dashboard"
+                            <a href="/dashboard/map"
                                 class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</a>
                             <a href="/logout"
                                 class="block px-4 py-2 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
@@ -81,10 +88,10 @@
                     @if (!userAuth())
                         <a href="/login"
                             class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Login</a>
-                        <a href="/signup"
+                        <a href="/register"
                             class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">SignUp</a>
                     @else
-                        <a href="/dashboard"
+                        <a href="/dashboard/map"
                             class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Dashboard</a>
                         <a href="/logout"
                             class="hover:text-blue-500 font-semibold transition-all duration-100 ease-in-out border-b border-slate-800 dark:border-slate-200">Logout</a>

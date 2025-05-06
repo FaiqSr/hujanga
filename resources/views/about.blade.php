@@ -30,7 +30,7 @@
                             beraktivitas di luar ruangan.
                         </p>
                         <div class="flex gap-5">
-                            <a href="/dashboard"
+                            <a href="/dashboard/map"
                                 class="px-5 py-2 border border-primary bg-secondary rounded-lg hover:bg-third text-white primary-gradient font-semibold">Coba
                                 Sekarang</a>
                             <a href="#team"
@@ -192,7 +192,7 @@
                 <p class="text-slate-500 max-w-2xl mx-auto mb-8">
                     Bergabunglah dengan ribuan pengguna yang telah mempercayakan perencanaan perjalanan mereka pada HujanGa.
                 </p>
-                <a href="/dashboard"
+                <a href="/dashboard/map"
                     class="px-8 py-3 border border-primary bg-secondary rounded-lg hover:bg-third text-white primary-gradient font-semibold text-lg inline-block">
                     Coba Sekarang
                 </a>
