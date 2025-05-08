@@ -120,14 +120,14 @@
                             {{-- </div> --}}
 
                         </section>
-                        <section class="flex flex-col gap-5">
-                            <section>
+                        <section class="flex flex-col gap-5 w-full">
+                            <section class="w-full">
                                 <canvas id="humidityChart" class="w-full"></canvas>
                             </section>
-                            <section>
+                            <section class="w-full">
                                 <canvas id="pressureChart"></canvas>
                             </section>
-                            <section>
+                            <section class="w-full">
                                 <canvas id="tempChart"></canvas>
                             </section>
                         </section>
