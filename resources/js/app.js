@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 console.log(name);
                 // console.log(content);
-                showModal(name);
+                if (name !== "Lokasi Anda") {
+                    showModal(name);
+                }
 
                 // Tampilkan modal (bisa pakai Bootstrap atau custom)
                 // showModal(name, content);

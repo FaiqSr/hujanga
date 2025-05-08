@@ -25,4 +25,9 @@ class DashboardController extends Controller
 
         return view('dashboard.users', ['data' => $data]);
     }
+
+    public function showMessage()
+    {
+        return view('dashboard.message');
+    }
 }
