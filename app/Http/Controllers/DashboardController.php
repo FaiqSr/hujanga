@@ -15,4 +15,14 @@ class DashboardController extends Controller
     {
         return view('dashboard.setting');
     }
+
+    public function showUser()
+    {
+        $app = app('firebase.database');
+
+        $data = $app->getReference('users/')->getValue();
+
+
+        return view('dashboard.users', ['data' => $data]);
+    }
 }

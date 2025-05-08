@@ -34,4 +34,27 @@ class HomeController extends Controller
     {
         return view('about.faiq');
     }
+
+    public function sendMessage(Request $request)
+    {
+        // dd($request);
+        $validatedRequest = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        $firebaseDb = app('firebase.database');
+
+        $firebaseDb->getReference('messages/')->push([
+            'name' => $validatedRequest['name'],
+            'email' => $validatedRequest['email'],
+            'subject' => $validatedRequest['subject'],
+            'message' => $validatedRequest['message'],
+            'created_at' => now()->format('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim.');
+    }
 }

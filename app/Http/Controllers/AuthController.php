@@ -48,6 +48,7 @@ class AuthController extends Controller
                 'uid' => $uid,
                 'first_name' => $claims->get('name'),
                 'last_name' => "",
+                'role' => 'user',
                 'email' => $claims->get('email'),
                 'photoUrl' => $claims->get('picture'),
             ]);
@@ -85,7 +86,7 @@ class AuthController extends Controller
             $this->firebaseDb->getReference('users/' . $user->uid)->set([
                 'uid' => $user->uid,
                 'first_name' => $validatedRequest['first_name'],
-                'last_name' => $validatedRequest['last_name'],
+                'last_name' => $validatedRequest['last_name'] ?? "",
                 'email' => $validatedRequest['email'],
                 'photoUrl' => "",
             ]);

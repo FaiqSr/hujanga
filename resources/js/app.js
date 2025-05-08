@@ -2,6 +2,7 @@ import "./bootstrap";
 import { initializeMap } from "./olMap.js";
 import "./getDb.js";
 import connectToFirebase from "./getDb.js";
+import { showModal } from "./modal.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const theme = localStorage.getItem("color-theme");
@@ -20,6 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const content = feature.get("content");
 
                 console.log(name);
+                // console.log(content);
+                showModal(name);
 
                 // Tampilkan modal (bisa pakai Bootstrap atau custom)
                 // showModal(name, content);

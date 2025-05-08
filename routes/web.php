@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\FirebaseAuth;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\RefreshFirebaseToken;
@@ -15,6 +16,7 @@ Route::middleware([RefreshFirebaseToken::class])->group(function () {
     Route::get('/about/niefa', [HomeController::class, 'aboutNiefa'])->name('aboutNiefa');
     Route::get('/about/faiq', [HomeController::class, 'aboutFaiq'])->name('aboutFaiq');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::post('/contact', [HomeController::class, 'sendMessage'])->name('message');
 });
 
 
@@ -30,4 +32,9 @@ Route::middleware([FirebaseAuth::class])->group(function () {
     Route::get('/dashboard/map', [DashboardController::class, 'dashboard'])->name('map');
     Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->name('setting');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('/dashboard/users', [DashboardController::class, 'showUser'])->name('users');
 });

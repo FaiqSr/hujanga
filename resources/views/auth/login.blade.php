@@ -103,7 +103,6 @@
                 }).catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-
                     const errorSection = document.getElementById('errorMessage')
                     errorSection.innerHTML = "Email atau password salah";
 
@@ -138,9 +137,9 @@
         })
 
 
-        facebookButton.addEventListener('click', () => {
+        facebookButton.addEventListener('click', async () => {
             const auth = getAuth();
-            signInWithPopup(auth, providerFacebook)
+            await signInWithPopup(auth, providerFacebook)
                 .then((result) => {
                     // The signed-in user info.
                     const user = result.user;
