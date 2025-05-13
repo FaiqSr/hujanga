@@ -2,179 +2,128 @@
 
 @section('title', 'Dashboard')
 
+@section('top-scripts')
+    @vite(['resources/js/map/map.js'])
+@endsection
+
 @section('content')
     <section id="map" class="w-full h-screen rounded-lg"></section>
+
+    <!-- Modal -->
     <section id="modal"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-all duration-300 ease-in-out opacity-0 invisible">
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-all duration-300 ease-in-out opacity-0 invisible p-2 lg:p-4">
 
-        <div class="max-h-screen w-full overflow-y-auto p-4">
+        <div class="relative w-full max-w-7xl max-h-[90vh] overflow-auto">
+            <!-- Close Button -->
+            <button onclick="ModalManager.hideModal()"
+                class="absolute top-2 right-2 z-50 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <!-- Modal Content -->
             <div
-                class="w-full flex flex-col lg:flex-row rounded-xl shadow-2xl transform transition-all duration-300 scale-100 bg-white dark:bg-gray-900">
-                <button onclick="closeModal()"
-                    class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors absolute top-4 right-4 z-50">
-                    <i class="fa-solid fa-xmark text-2xl "></i>
-                </button>
+                class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col lg:flex-row transition-all duration-300 transform">
+                <!-- Left Column - Sensor Data -->
+                <div class="w-full lg:w-1/2 p-4 overflow-y-auto">
+                    <h1 id="sensor-name" class="text-xl lg:text-2xl font-bold text-center pt-4 lg:pt-10 mb-4"></h1>
 
-                <div
-                    class=" w-full flex flex-col lg:flex-row  rounded-xl shadow-2xl  transform transition-all duration-300 scale-100">
-                    <!-- Modal Header -->
-                    <section class="w-full lg:w-1/2 flex flex-col">
-                        <h1 id="sensor-name" class="text-2xl font-bold text-center  pt-10"></h1>
-                        <section class=" max-w-full flex flex-wrap justify-center gap-5 p-5 pb-20 pt-10">
+                    <!-- Sensor Cards Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3 p-2">
+                        <!-- Temperature Card -->
+                        <div
+                            class="flex flex-col items-center border rounded-lg border-slate-200 dark:border-gray-700 p-3 h-32 lg:h-40">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-2">
+                                <i
+                                    class="fa-solid fa-temperature-three-quarters text-primary dark:text-secondary text-lg lg:text-xl"></i>
+                            </div>
+                            <p class="text-sm lg:text-base">Temperature</p>
+                            <p class="text-xl lg:text-2xl font-bold"><span id="sensor-temp">-</span>°C</p>
+                        </div>
 
-                            <!-- Modal Body -->
-                            {{-- <div class="p-6 flex gap-2 flex-col items-center justify-center flex-wrap sm:flex-row"> --}}
-                            <!-- Temperature Card -->
-                            <section
-                                class="flex flex-col justify-center items-center border rounded-lg border-slate-200 dark:border-gray-700 w-32 h-32 lg:w-52 lg:h-52 p-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center ">
-                                    <i
-                                        class="fa-solid fa-temperature-three-quarters text-primary dark:text-secondary text-xl"></i>
-                                </div>
-                                <p>Temperature</p>
+                        <!-- Humidity Card -->
+                        <div
+                            class="flex flex-col items-center border rounded-lg border-slate-200 dark:border-gray-700 p-3 h-32 lg:h-40">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-2">
+                                <i class="fa-solid fa-droplet text-primary dark:text-secondary text-lg lg:text-xl"></i>
+                            </div>
+                            <p class="text-sm lg:text-base">Humidity</p>
+                            <p class="text-xl lg:text-2xl font-bold"><span id="sensor-humidity">-</span>%</p>
+                        </div>
 
-                                <p class="text-2xl font-bold"><span id="sensor-temp">-</span>°C</p>
-                            </section>
-                            <section
-                                class="flex flex-col justify-center items-center border rounded-lg border-slate-200 dark:border-gray-700 w-32 h-32 lg:w-52 lg:h-52 p-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center ">
-                                    <i class="fa-solid fa-droplet text-primary dark:text-secondary text-xl"></i>
-                                </div>
-                                <p>Humidity</p>
+                        <!-- Pressure Card -->
+                        <div
+                            class="flex flex-col items-center border rounded-lg border-slate-200 dark:border-gray-700 p-3 h-32 lg:h-40">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-2">
+                                <i class="fa-solid fa-gauge text-primary dark:text-secondary text-lg lg:text-xl"></i>
+                            </div>
+                            <p class="text-sm lg:text-base">Pressure</p>
+                            <p class="text-xl lg:text-2xl font-bold"><span id="sensor-pressure">-</span> hPa</p>
+                        </div>
 
-                                <p class="text-2xl font-bold"><span id="sensor-humidity">-</span>%</p>
-                            </section>
-                            <section
-                                class="flex flex-col justify-center items-center border rounded-lg border-slate-200 dark:border-gray-700 w-32 h-32 lg:w-52 lg:h-52 p-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center ">
-                                    <i class="fa-solid fa-gauge text-primary dark:text-secondary text-xl"></i>
-                                </div>
-                                <p>Pressure</p>
+                        <!-- Rain Status Card -->
+                        <div
+                            class="flex flex-col items-center border rounded-lg border-slate-200 dark:border-gray-700 p-3 h-32 lg:h-40">
+                            <div
+                                class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-2">
+                                <i class="fa-solid fa-cloud-rain text-primary dark:text-secondary text-lg lg:text-xl"></i>
+                            </div>
+                            <p class="text-sm lg:text-base">Rain Status</p>
+                            <p class="text-xl lg:text-2xl font-bold"><span id="sensor-ujan">-</span></p>
+                        </div>
+                    </div>
 
-                                <p class="text-2xl font-bold"><span id="sensor-pressure">-</span> hPa</p>
-                            </section>
-                            <section
-                                class="flex flex-col justify-center items-center border rounded-lg border-slate-200 dark:border-gray-700 w-32 h-32 lg:w-52 lg:h-52 p-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center ">
-                                    <i class="fa-solid fa-cloud-rain text-primary dark:text-secondary text-xl"></i>
-                                </div>
-                                <p>Rain Status</p>
+                    <!-- Charts Section -->
+                    <div class="mt-4 space-y-4 px-2">
+                        <div class="w-full h-48 lg:h-56">
+                            <canvas id="humidityChart" class="w-full h-full"></canvas>
+                        </div>
+                        <div class="w-full h-48 lg:h-56">
+                            <canvas id="pressureChart" class="w-full h-full"></canvas>
+                        </div>
+                        <div class="w-full h-48 lg:h-56">
+                            <canvas id="tempChart" class="w-full h-full"></canvas>
+                        </div>
+                    </div>
+                </div>
 
-                                <p class="text-2xl font-bold"><span id="sensor-ujan">-</span></p>
-                            </section>
-                            {{-- <div
-                                    class="flex items-center p-4 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-slate-200 dark:border-gray-700">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
-                                        <i
-                                            class="fa-solid fa-temperature-three-quarters text-primary dark:text-secondary text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-slate-500 dark:text-slate-400">Temperature</p>
-                                        <p class="text-2xl font-bold"><span id="sensor-temp">-</span>°C</p>
-                                    </div>
-                                </div>
-
-                                <!-- Humidity Card -->
-                                <div
-                                    class="flex items-center p-4 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-slate-200 dark:border-gray-700">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
-                                        <i class="fa-solid fa-droplet text-primary dark:text-secondary text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-slate-500 dark:text-slate-400">Humidity</p>
-                                        <p class="text-2xl font-bold"><span id="sensor-humidity">-</span>%</p>
-                                    </div>
-                                </div>
-
-                                <!-- Pressure Card -->
-                                <div
-                                    class="flex items-center p-4 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-slate-200 dark:border-gray-700">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
-                                        <i class="fa-solid fa-gauge text-primary dark:text-secondary text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-slate-500 dark:text-slate-400">Pressure</p>
-                                        <p class="text-2xl font-bold"><span id="sensor-pressure">-</span> hPa</p>
-                                    </div>
-                                </div>
-
-                                <!-- Rain Card -->
-                                <div
-                                    class="flex items-center p-4 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-slate-200 dark:border-gray-700">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mr-4">
-                                        <i class="fa-solid fa-cloud-rain text-primary dark:text-secondary text-xl"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-slate-500 dark:text-slate-400">Rain Status</p>
-                                        <p class="text-2xl font-bold"><span id="sensor-ujan">-</span></p>
-                                    </div>
-                                </div> --}}
-                            {{-- </div> --}}
-
-                        </section>
-                        <section class="flex flex-col gap-5 w-full px-5">
-                            <section class="w-full">
-                                <canvas id="humidityChart" class="w-full h-full"></canvas>
-                            </section>
-                            <section class="w-full">
-                                <canvas id="pressureChart" class="w-full h-full"></canvas>
-                            </section>
-                            <section class="w-full">
-                                <canvas id="tempChart"></canvas>
-                            </section>
-                        </section>
-                    </section>
-                    <section class="w-full lg:w-1/2 pt-24 overflow-x-auto">
-                        <table id="data" class="display w-full  ">
-                            <thead>
+                <!-- Right Column - Data Table -->
+                <div class="w-full lg:w-1/2 bg-gray-50 dark:bg-gray-800 p-2 lg:p-4 overflow-auto">
+                    <div class="sticky top-0 bg-gray-50 dark:bg-gray-800 pb-2 z-10">
+                        <h2 class="text-lg lg:text-xl font-semibold mb-2">Historical Data</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table id="data" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-100 dark:bg-gray-700">
                                 <tr>
-                                    <th>Waktu</th>
-                                    <th>Temperature</th>
-                                    <th>Humidity</th>
-                                    <th>Pressure</th>
-                                    <th>Rain</th>
+                                    <th
+                                        class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        Waktu</th>
+                                    <th
+                                        class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        Temp</th>
+                                    <th
+                                        class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        Humidity</th>
+                                    <th
+                                        class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        Pressure</th>
+                                    <th
+                                        class="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        Rain</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700"></tbody>
                         </table>
-                    </section>
+                    </div>
                 </div>
             </div>
+        </div>
     </section>
 @endsection
 
 @section('script-bottom')
-    <script>
-        const closeModal = () => {
-            const modal = document.getElementById('modal');
-            const modalContent = modal.querySelector('div');
-            const tableElement = document.getElementById("data").querySelector("tbody");
 
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-
-            modal.classList.remove('opacity-100');
-            modal.classList.add('opacity-0');
-
-
-            // while (tableElement.hasChildNodes()) {
-            //     tableElement.removeChild(tableElement.lastChild);
-            // }
-
-            tableElement.innerHTML = ""
-
-            setTimeout(() => {
-                modal.classList.remove('visible');
-                modal.classList.add('invisible');
-            }, 300);
-        }
-    </script>
 @endsection

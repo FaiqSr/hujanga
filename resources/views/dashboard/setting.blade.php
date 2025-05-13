@@ -3,7 +3,7 @@
 @section('title', 'Setting')
 
 @section('content')
-    <section class="p-4 lg:p-8 mt-16 lg:mt-0 w-full">
+    <section class="p-4 lg:p-5 pt-24  lg:mt-0 w-full">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
             <h2 class="text-2xl font-bold mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
                 <i class="fa-solid fa-gear mr-2"></i>Settings
@@ -16,17 +16,22 @@
                         <i class="fa-solid fa-user mr-2"></i>Profile Settings
                     </h3>
 
-                    <div class="flex flex-col md:flex-row gap-6 items-center">
-                        <div class="flex-shrink-0">
+                    <form class="flex flex-col md:flex-row gap-6 items-center">
+                        @csrf
+                        <div class="flex-shrink-0 text-center">
                             @if (getUser()['photoUrl'] == '')
                                 <img src="{{ asset('assets/images/logos/waterDrop.png') }}" alt="Profile"
+                                    id="profilePicture"
                                     class="w-32 h-32 rounded-full object-cover border-4 border-gray-200 dark:border-gray-600">
                             @else
-                                <img src="{{ getUser()['photoUrl'] }}" alt="Profile"
+                                <img src="{{ getUser()['photoUrl'] }}" alt="Profile" id="profilePicture"
                                     class="w-32 h-32 rounded-full object-cover border-4 border-gray-200 dark:border-gray-600">
                             @endif
-                            <button class="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                                <i class="fa-solid fa-camera mr-1"></i>Change Photo
+                            <input type="file" id="profilePhotoInput" accept="image/*" class="hidden">
+                            <button id="changePhotoBtn"
+                                class="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:underline text-center">
+                                <i class="fa-solid fa-camera mr-1"></i>
+                                Change Photo
                             </button>
                         </div>
 
@@ -56,7 +61,7 @@
                                 <i class="fa-solid fa-floppy-disk mr-2"></i>Save Changes
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Account Security -->
@@ -66,16 +71,19 @@
                     </h3>
 
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded-md shadow-sm">
-                            <div>
-                                <h4 class="font-medium">Change Password</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Update your account password</p>
+                        @if (!getClaims()->get('firebase')['sign_in_provider'] == 'google.com')
+                            <div
+                                class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded-md shadow-sm">
+                                <div>
+                                    <h4 class="font-medium">Change Password</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Update your account password</p>
+                                </div>
+                                <button
+                                    class="px-3 py-1 text-sm bg-gray-200 dark:bg-gray-600 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
+                                    Change
+                                </button>
                             </div>
-                            <button
-                                class="px-3 py-1 text-sm bg-gray-200 dark:bg-gray-600 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
-                                Change
-                            </button>
-                        </div>
+                        @endif
 
                         <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded-md shadow-sm">
                             <div>
@@ -170,4 +178,31 @@
             document.documentElement.classList.add('dark');
         }
     </script>
+    <script>
+        const changeBtn = document.getElementById('changePhotoBtn');
+        const photoInput = document.getElementById('profilePhotoInput');
+        const profile = document.getElementById('profilePicture');
+
+        changeBtn.addEventListener('click', () => {
+            photoInput.click(); // Trigger input file
+        });
+
+        photoInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Tampilkan preview
+
+                    profile.src = e.target.result;
+
+                    // TODO: Upload ke server di sini jika ingin simpan
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
 @endsection

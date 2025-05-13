@@ -6,7 +6,8 @@ if (!function_exists('userAuth')) {
     function userAuth()
     {
         $firebaseService = new FirebaseService();
-        if (!session()->get('firebase_access_token')) {
+        $token = session()->get('firebase_access_token');
+        if ($token == null) {
             return null;
         }
 
@@ -33,10 +34,11 @@ if (!function_exists('getClaims')) {
     function getClaims()
     {
         $firebaseService = new FirebaseService();
-        if (!session()->get('firebase_access_token')) {
+        $token = session()->get('firebase_access_token');
+        if (!$token) {
             return null;
         }
 
-        return $firebaseService->verifyIdToken(session()->get('firebase_access_token'))->claims();
+        return $firebaseService->verifyIdToken($token)->claims();
     }
 }

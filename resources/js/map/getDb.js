@@ -5,7 +5,7 @@ import showPointsOnMap from "./mark"; // fungsi yang render marker ke map
 export const db = getDatabase(app);
 
 export default function connectToFirebase(map) {
-    const sensorRef = ref(db, "sensor");
+    const sensorRef = ref(db, "/sensor");
     onValue(sensorRef, (snapshot) => {
         const data = snapshot.val();
 

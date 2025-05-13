@@ -1,8 +1,7 @@
-<aside
-    class="fixed lg:flex -translate-x-[500px] lg:translate-x-0 justify-center min-h-svh border-r border-gray-200 bg-slate-50 dark:bg-gray-800 dark:border-gray-700 z-40 w-72 transition-all"
-    id="sidebar">
-    <section class="flex flex-col h-svh w-full p-5">
-        <div class="flex items-center mb-3">
+<aside class="fixed -translate-x-[500px]  p-5 justify-center min-h-svh z-40 w-80 transition-all" id="sidebar">
+    <section
+        class="flex flex-col w-full p-5 bg-slate-50 dark:bg-gray-800 dark:border-gray-700 rounded-lg border border-slate-200">
+        <div class="flex items-center mb-3 border-b pb-5">
             @if (getUser()['photoUrl'] == '')
                 <img src="{{ asset('assets/images/logos/waterDrop.png') }}" alt="" class="w-16 rounded-full">
             @else
@@ -74,14 +73,6 @@
                     Map
                 </a>
             </li>
-            <li class="text-gray-700 dark:text-gray-300 mb-2 hover:text-gray-900 dark:hover:text-white">
-                <a href="{{ route('setting') }}"
-                    class="flex w-full items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-                    style="gap: 0.5rem;">
-                    <i class="fa-solid fa-envelope"></i>
-                    Pesan
-                </a>
-            </li>
 
             @if (getUser()['role'] == 'admin')
                 <li class="text-gray-700 dark:text-gray-300 mb-2 hover:text-gray-900 dark:hover:text-white">
@@ -106,10 +97,17 @@
                                 <h5>User Management</h5>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="/transaksi/pengeluaran"
                                 class="flex justify-between w-full items-center p-2 pl-[2.6rem] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <h5>Pengeluaran</h5>
+                            </a>
+                        </li> --}}
+                        <li>
+                            <a href="/transaksi/pengeluaran"
+                                class="flex justify-between w-full items-center p-2 pl-[2.6rem] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+
+                                <h5></i>Message</h5>
                             </a>
                         </li>
                     </ul>

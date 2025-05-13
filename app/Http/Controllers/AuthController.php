@@ -86,6 +86,7 @@ class AuthController extends Controller
             $this->firebaseDb->getReference('users/' . $user->uid)->set([
                 'uid' => $user->uid,
                 'first_name' => $validatedRequest['first_name'],
+                'role' => 'user',
                 'last_name' => $validatedRequest['last_name'] ?? "",
                 'email' => $validatedRequest['email'],
                 'photoUrl' => "",

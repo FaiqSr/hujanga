@@ -55,6 +55,13 @@ class HomeController extends Controller
             'created_at' => now()->format('Y-m-d H:i:s'),
         ]);
 
+        $firebaseDb->getReference('notifications/')->push([
+            'type' => 'email',
+            'title' => $validatedRequest['email'],
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'isRead' => false,
+        ]);
+
         return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim.');
     }
 }

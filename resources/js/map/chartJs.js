@@ -1,14 +1,25 @@
 import Chart from "chart.js/auto";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/id"; // pakai bahasa Indonesia
+
+dayjs.extend(relativeTime);
+dayjs.locale("id");
 
 const chartInstances = {};
 
 export function createOrUpdateChart(canvasId, label, labels, data) {
     const ctx = document.getElementById(canvasId).getContext("2d");
 
+    const formattedTimes = labels.map((ts) => {
+        const time = dayjs.unix(ts);
+        return time.format("D MMM YYYY HH:mm");
+    });
+
     // Jika sudah ada instance untuk canvasId ini, update saja
     if (chartInstances[canvasId]) {
         const chart = chartInstances[canvasId];
-        chart.data.labels = labels;
+        chart.data.labels = formattedTimes;
         chart.data.datasets[0].label = label;
         chart.data.datasets[0].data = data;
         chart.update();
@@ -17,7 +28,7 @@ export function createOrUpdateChart(canvasId, label, labels, data) {
         chartInstances[canvasId] = new Chart(ctx, {
             type: "line",
             data: {
-                labels,
+                formattedTimes,
                 datasets: [
                     {
                         label,

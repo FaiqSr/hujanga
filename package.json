@@ -16,6 +16,7 @@
     "dependencies": {
         "chart.js": "^4.4.9",
         "datatables.net-dt": "^2.3.0",
+        "dayjs": "^1.11.13",
         "firebase": "^11.6.1",
         "flowbite": "^3.1.2",
         "motion": "^12.9.2",

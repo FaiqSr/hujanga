@@ -29,12 +29,17 @@ Route::middleware([GuestMiddleware::class])->group(function () {
 });
 
 Route::middleware([FirebaseAuth::class])->group(function () {
-    Route::get('/dashboard/map', [DashboardController::class, 'dashboard'])->name('map');
-    Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->name('setting');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/map', [DashboardController::class, 'showMap'])->name('map');
+    Route::get('/dashboard/setting', [DashboardController::class, 'showSetting'])->name('setting');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 
 Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('/dashboard/messages', [DashboardController::class, 'showMessage'])->name('messages');
+    Route::post('/dashboard/messages', [DashboardController::class, 'deleteMessage'])->name('deleteMessage');
     Route::get('/dashboard/users', [DashboardController::class, 'showUser'])->name('users');
+    Route::post('/dashboard/users', [DashboardController::class, 'updateUser'])->name('updateUser');
+    Route::post('/dashboard/users/delete', [DashboardController::class, 'deleteUser'])->name('deleteUser');
 });

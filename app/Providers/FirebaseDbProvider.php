@@ -15,9 +15,10 @@ class FirebaseDbProvider extends ServiceProvider
         $this->app->singleton('firebase.database', function ($app) {
             $serviceAccount = storage_path('app/firebase/firebase_credentials.json');
 
-            return (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://projectapmo5-default-rtdb.asia-southeast1.firebasedatabase.app/')->createDatabase();
+            return (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri("https://projectapmo-default-rtdb.asia-southeast1.firebasedatabase.app/")->createDatabase();
         });
     }
+
 
     /**
      * Bootstrap services.

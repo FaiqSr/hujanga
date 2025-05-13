@@ -47,4 +47,9 @@ class FirebaseService
     {
         return $this->auth->createUserWithEmailAndPassword($email, $password);
     }
+
+    public function deleteUser($uid)
+    {
+        return $this->auth->deleteUser($uid);
+    }
 }
