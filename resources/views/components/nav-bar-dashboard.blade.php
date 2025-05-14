@@ -104,7 +104,7 @@
                             </a>
                         </li> --}}
                         <li>
-                            <a href="/transaksi/pengeluaran"
+                            <a href="{{ route('messages') }}"
                                 class="flex justify-between w-full items-center p-2 pl-[2.6rem] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                 <h5></i>Message</h5>

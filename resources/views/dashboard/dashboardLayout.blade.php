@@ -22,7 +22,7 @@
         <!-- Main Content -->
         <section class="transition-all">
             <header class="fixed z-30 w-full p-4 right-0 ">
-                <section class="p-1 bg-gray-50 dark:bg-gray-800 lg:w-full flex justify-end rounded-lg gap-4">
+                <section class="p-1 bg-gray-50 dark:bg-gray-800 lg:w-full flex justify-end rounded-lg gap-7">
 
                     @if (getUser()['role'] == 'admin')
                         <section class="flex items-center">

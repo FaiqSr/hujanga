@@ -11,12 +11,11 @@ export default function showPointsOnMap(points, map) {
     if (previousLayer) {
         map.removeLayer(previousLayer);
     }
+    console.log("showPointsOnMap() : points = ", points);
 
     const features = points
         // .filter((p) => p.settings && p.settings.lat && p.settings.lon)
         .map((p) => {
-            console.log(p);
-            // console.log(p.settings);
             const keys = Object.keys(p.data);
             const lastKey = keys.sort().at(-1); // sort untuk urutan waktu, lalu ambil terakhir
             const lastData = p.data[lastKey];
@@ -27,6 +26,7 @@ export default function showPointsOnMap(points, map) {
                     fromLonLat([p.settings.Lon, p.settings.Lat])
                 ),
                 name: p.uid || "Tanpa Nama",
+                type: "sensor",
             });
 
             if (lastData.ujan) {

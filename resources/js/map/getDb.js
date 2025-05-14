@@ -4,7 +4,7 @@ import showPointsOnMap from "./mark"; // fungsi yang render marker ke map
 
 export const db = getDatabase(app);
 
-export default function connectToFirebase(map) {
+export default function getSensorData(map) {
     const sensorRef = ref(db, "/sensor");
     onValue(sensorRef, (snapshot) => {
         const data = snapshot.val();
@@ -20,7 +20,7 @@ export default function connectToFirebase(map) {
             ...value,
         }));
 
-        // console.log(points.);
+        // console.log("getSensorData", points);
 
         // Tampilkan ke peta
         showPointsOnMap(points, map);

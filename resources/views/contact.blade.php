@@ -248,9 +248,8 @@
                             <i class="fa-solid fa-chevron-down text-primary transition-transform duration-300"></i>
                         </div>
                         <div class="accordion-content px-5 pb-5 bg-white dark:bg-gray-800 hidden">
-                            <p class="text-slate-500">HujanGa menggunakan data dari berbagai sumber dan algoritma prediksi
-                                canggih untuk memberikan akurasi hingga 90% untuk prediksi 1 jam ke depan. Akurasi akan
-                                semakin tinggi semakin dekat dengan waktu prediksi.</p>
+                            <p class="text-slate-500">Hujanga menggunakan data kondisi terkini dari lingkungan sekitar,
+                                sehingga keakuratan data mencapai 90%.</p>
                         </div>
                     </div>
 

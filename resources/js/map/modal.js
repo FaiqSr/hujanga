@@ -3,6 +3,12 @@ import { db } from "./getDb";
 import { createOrUpdateChart } from "./chartJs";
 import DataTable from "datatables.net-dt";
 import "datatables.net-dt/css/dataTables.dataTables.css";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/id"; // pakai bahasa Indonesia
+
+dayjs.extend(relativeTime);
+dayjs.locale("id");
 
 let dataTableInstance = null;
 let unsubscribe = null;
@@ -38,6 +44,7 @@ export function showModal(name) {
         const sensors = snapshot.val();
         if (!sensors) return;
 
+        console.log(sensors);
         const labels = Object.keys(sensors).sort(); // pastikan urut waktu
         const tempData = labels.map((key) => sensors[key].temp);
         const humidityData = labels.map((key) => sensors[key].humidity);
@@ -82,7 +89,7 @@ export function showModal(name) {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-                <td>${new Date(record.timestamp * 1000).toLocaleString()}</td>
+                <td>${dayjs(record.timestamp * 1000).fromNow()}</td>
                 <td>${record.temp ?? "-"}</td>
                 <td>${record.humidity ?? "-"}</td>
                 <td>${record.pressure ?? "-"}</td>

@@ -12,8 +12,7 @@ export function createOrUpdateChart(canvasId, label, labels, data) {
     const ctx = document.getElementById(canvasId).getContext("2d");
 
     const formattedTimes = labels.map((ts) => {
-        const time = dayjs.unix(ts);
-        return time.format("D MMM YYYY HH:mm");
+        return dayjs(ts * 1000).fromNow();
     });
 
     // Jika sudah ada instance untuk canvasId ini, update saja

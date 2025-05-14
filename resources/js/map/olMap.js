@@ -43,6 +43,7 @@ export function initializeMap(targetId) {
                         center: fromLonLat([lon, lat]),
                         zoom: 12,
                     }),
+                    controls: [],
                 });
 
                 // Tambahkan titik lokasi pengguna

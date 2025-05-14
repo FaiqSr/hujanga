@@ -1,28 +1,37 @@
 import { initializeMap } from "./olMap.js";
 import "./getDb.js";
 import { showModal } from "./modal.js";
-import connectToFirebase from "./getDb.js";
+import getSensorData from "./getDb.js";
+import "./addInformation.js";
+import {
+    createInformationMark,
+    showInformationModal,
+} from "./createInformationMark.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const theme = localStorage.getItem("color-theme");
-
-    if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-    } else {
-        document.documentElement.classList.remove("dark");
-    }
     try {
         const map = await initializeMap("map");
-        connectToFirebase(map); // 🔁 Mulai realtime listener
+        getSensorData(map);
+        createInformationMark(map);
         map.on("singleclick", function (evt) {
             map.forEachFeatureAtPixel(evt.pixel, function (feature) {
                 const name = feature.get("name");
+                const type = feature.get("type");
                 const content = feature.get("content");
+                console.log(name);
+
+                console.log(type);
+
+                switch (type) {
+                    case "userInformation":
+                        showInformationModal(name);
+                        break;
+                    case "sensor":
+                        showModal(name);
+                        break;
+                }
 
                 // console.log(content);
-                if (name !== "Lokasi Anda") {
-                    showModal(name);
-                }
 
                 // Tampilkan modal (bisa pakai Bootstrap atau custom)
                 // showModal(name, content);

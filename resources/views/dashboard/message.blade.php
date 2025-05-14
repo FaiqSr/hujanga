@@ -14,10 +14,8 @@
                 </div>
             </div>
 
-            <!-- Email List -->
             <div
                 class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <!-- Email List Header -->
                 <div
                     class="grid grid-cols-12 bg-gray-50 dark:bg-gray-700 px-4 py-3 border-b border-gray-200 dark:border-gray-700 font-medium text-sm text-gray-500 dark:text-gray-400">
                     <div class="col-span-4 lg:col-span-3">Sender</div>
@@ -25,7 +23,6 @@
                     <div class="hidden lg:col-span-3 lg:block">Date</div>
                 </div>
 
-                <!-- Email Items -->
                 @if ($data && count($data) > 0)
                     @foreach ($data as $key => $email)
                         <button
@@ -55,7 +52,6 @@
                         </button>
                     @endforeach
                 @else
-                    <!-- Empty State -->
                     <div class="w-full p-12 text-center">
                         <div class="mx-auto w-24 h-24 mb-4 text-gray-400">
                             <i class="fa-regular fa-envelope-open text-6xl"></i>
@@ -67,11 +63,9 @@
                 @endif
             </div>
 
-            <!-- Email Detail View -->
             <div id="emailDetail"
                 class="hidden mt-6 bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
                 <div class="p-6">
-                    <!-- Email Header -->
                     <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-4">
                         <div class="flex justify-between items-start mb-4">
                             <h2 class="text-xl font-bold text-gray-800 dark:text-white" id="emailSubject">Regarding your
@@ -96,7 +90,6 @@
                         </div>
                     </div>
 
-                    <!-- Email Body -->
                     <div class="prose dark:prose-invert max-w-none" id="emailMessage">
                         <p>Hello,</p>
                         <p>I wanted to follow up on your question about our services. We'd be happy to provide more
@@ -105,7 +98,6 @@
                         <p>Best regards,<br>John</p>
                     </div>
 
-                    <!-- Email Actions -->
                     <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 flex gap-3">
                         <button
                             class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
@@ -127,7 +119,6 @@
                 </div>
             </div>
 
-            <!-- Pagination -->
             @if ($data && count($data) > 0)
                 <div class="mt-6 flex justify-center">
                     <nav class="inline-flex rounded-md shadow">
