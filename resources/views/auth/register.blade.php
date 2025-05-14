@@ -112,14 +112,14 @@
         } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js"
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCWj-q9H9eIbh8u642FcPgJJGZ6AmnNeMw",
-            authDomain: "projectapmo5.firebaseapp.com",
-            databaseURL: "https://projectapmo5-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "projectapmo5",
-            storageBucket: "projectapmo5.firebasestorage.app",
-            messagingSenderId: "276690538161",
-            appId: "1:276690538161:web:7cd4847d9c0eab4e71dc90",
-            measurementId: "G-YF5YDTK0P6"
+            apiKey: "AIzaSyC9xdU9qSHCYaiSn6e7Y5y5K_uTMc0osw8",
+            authDomain: "projectapmo.firebaseapp.com",
+            databaseURL: "https://projectapmo-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "projectapmo",
+            storageBucket: "projectapmo.firebasestorage.app",
+            messagingSenderId: "189628012384",
+            appId: "1:189628012384:web:df6fb50043963d1350b005",
+            measurementId: "G-2YQB3BDTBR"
         };
 
         const googleButton = document.getElementById('google-button');
