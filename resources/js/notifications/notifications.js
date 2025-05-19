@@ -7,7 +7,7 @@ import {
     equalTo,
     remove,
 } from "firebase/database";
-import { db } from "../map/getDb";
+import { db } from "../firebase/firebase";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/id";

@@ -59,7 +59,7 @@ class AuthController extends Controller
                 'firebase_uid' => $uid,
             ]);
 
-            return redirect()->route('map');
+            return redirect()->route('dashboard');
         }
 
         session([
@@ -67,7 +67,7 @@ class AuthController extends Controller
             'firebase_refresh_token' => $refreshToken,
             'firebase_uid' => $uid,
         ]);
-        return redirect()->route('map');
+        return redirect()->route('dashboard');
     }
 
     public function signUp(Request $request)
@@ -125,7 +125,7 @@ class AuthController extends Controller
             'firebase_uid' => $uid,
         ]);
 
-        return redirect()->route('map');
+        return redirect()->route('dashboard');
     }
     public function logout()
     {

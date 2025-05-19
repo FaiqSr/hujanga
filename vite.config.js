@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/map/map.js",
                 "resources/js/notifications/notifications.js",
+                "resources/js/dashboard/dashboard.js",
             ],
             refresh: true,
         }),

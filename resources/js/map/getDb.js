@@ -1,8 +1,6 @@
-import { getDatabase, ref, onValue } from "firebase/database";
-import { app } from "./firebaseSdk"; // pastikan sudah setup firebase
+import { ref, onValue } from "firebase/database";
+import { app } from "../firebase/firebase"; // pastikan sudah setup firebase
 import showPointsOnMap from "./mark"; // fungsi yang render marker ke map
-
-export const db = getDatabase(app);
 
 export default function getSensorData(map) {
     const sensorRef = ref(db, "/sensor");

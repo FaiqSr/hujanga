@@ -21,18 +21,10 @@
     <main class="min-h-svh">
         <!-- Main Content -->
         <section class="transition-all">
-            <header class="fixed z-30 w-full p-4 right-0 ">
-                <section class="p-1 bg-gray-50 dark:bg-gray-800 lg:w-full flex justify-end rounded-lg gap-7">
+            <header class="fixed z-30 w-full p-4 right-0">
+                <section
+                    class="p-1 border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 lg:w-full flex justify-between rounded-lg gap-7">
 
-                    @if (getUser()['role'] == 'admin')
-                        <section class="flex items-center">
-                            <button class="flex items-center" onclick="toggleNotificationModal()">
-                                <i class="fa-solid fa-bell text-2xl"></i>
-                                <span id="notification-number"
-                                    class="absolute -mt-4 ml-4 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-                            </button>
-                        </section>
-                    @endif
                     <nav class="px-2 py-2 lg:py-[0.85rem] flex justify-between items-center">
                         <section class="">
                             <button class="flex items-center text-3xl" id="menu" onclick="toggleSideBar()">
@@ -40,6 +32,76 @@
                             </button>
                         </section>
                     </nav>
+                    <section class="flex items-center gap-8">
+                        @if (getUser()['role'] == 'admin')
+                            <section class="flex items-center">
+                                <button class="flex items-center" onclick="toggleNotificationModal()">
+                                    <i class="fa-solid fa-bell text-2xl"></i>
+                                    <span id="notification-number"
+                                        class="absolute -mt-4 ml-4 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                                </button>
+                            </section>
+                        @endif
+
+                        <!-- Profile Dropdown -->
+                        <div class="relative flex items-center">
+                            <button type="button" class="flex items-center focus:outline-none" id="user-menu-button"
+                                aria-expanded="false" aria-haspopup="true" onclick="toggleProfileDropdown()">
+                                <span class="sr-only">Open user menu</span>
+                                @if (getUser()['photoUrl'] == '')
+                                    <img class="h-8 w-8 rounded-full"
+                                        src="{{ asset('assets/images/logos/waterDrop.png') }}" alt="Profile">
+                                @else
+                                    <img class="h-8 w-8 rounded-full" src="{{ getUser()['photoUrl'] }}" alt="Profile">
+                                @endif
+                                <span
+                                    class="ml-2 hidden md:inline text-sm font-medium dark:text-white">{{ getUser()['first_name'] }}</span>
+                                <i class="fa-solid fa-chevron-down ml-1 text-xs hidden md:inline"></i>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="profileDropdown"
+                                class="hidden absolute right-0 top-10 z-50 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-200 dark:border-gray-700">
+                                <div class="py-1" role="none">
+                                    <!-- User info -->
+                                    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                                        <p class="text-sm font-medium text-gray-900 dark:text-white">
+                                            {{ getUser()['first_name'] }} {{ getUser()['last_name'] ?? '' }}</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 truncate">
+                                            {{ getUser()['email'] }}</p>
+                                    </div>
+
+                                    <!-- Menu items -->
+                                    <a href=""
+                                        class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <i class="fa-solid fa-user mr-2 text-gray-500 dark:text-gray-400"></i>
+                                        Your Profile
+                                    </a>
+                                    <a href=""
+                                        class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <i class="fa-solid fa-cog mr-2 text-gray-500 dark:text-gray-400"></i>
+                                        Settings
+                                    </a>
+
+                                    @if (getUser()['role'] == 'admin')
+                                        <a href=""
+                                            class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="fa-solid fa-lock mr-2 text-gray-500 dark:text-gray-400"></i>
+                                            Admin Panel
+                                        </a>
+                                    @endif
+
+
+                                    <a href="{{ route('logout') }}"
+                                        class="flex items-center w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>
+                                        Sign out
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </section>
             </header>
             <section class="flex flex-col lg:flex-row justify-between gap-4">
@@ -103,6 +165,21 @@
                 sideBar.classList.add('translate-x-0')
             }
         }
+
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close the dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('profileDropdown');
+            const button = document.getElementById('user-menu-button');
+
+            if (!button.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
     </script>
 
     @if (getUser()['role'] == 'admin')
